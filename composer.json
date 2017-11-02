@@ -1,0 +1,11 @@
+{
+    "name": "ro4/code-updater",
+    "description": "code updater",
+    "type": "project",
+    "license": "MIT",
+    "minimum-stability": "stable",
+    "require": {
+        "cpliakas/git-wrapper": "~1.0",
+        "ext-swoole": "*"
+    }
+}

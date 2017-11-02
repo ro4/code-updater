@@ -1,0 +1,16 @@
+<?php
+return [
+    'projects' => [
+        'project_name1'  => [
+            'path' => '/path/to/project_name1',
+        ],
+        'project_name2' => [
+            'path' => '/path/to/project_name2',
+        ]
+    ],
+    'port'     => 4000,
+    'password' => [
+        'key'   => 'your-pass-word-key',
+        'value' => 'your-pass-word'
+    ]
+];
