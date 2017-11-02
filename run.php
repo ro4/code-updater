@@ -10,7 +10,7 @@ $password = isset($config['password']) ? $config['password'] : [];
 $http     = new swoole_http_server("0.0.0.0", $port);
 
 $http->on("start", function ($server) use ($port) {
-    echo "code updater is starting at port:{$port}\n";
+    echo "code updater is running at port:{$port}\n";
 });
 
 $http->on("request", function ($request, $response) use ($wrapper, $projects, $password) {
