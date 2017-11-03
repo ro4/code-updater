@@ -23,7 +23,10 @@ $http->on("request", function ($request, $response) use ($wrapper) {
         $path     = access_object(Config::instance()->projects, "{$project}.path");
         $pass     = ($password && $password == $passwordValue);
         if ($pass && $path) {
-            $msg =  date('[Y-m-d H:i:s]:') . $project . ' ' . $wrapper->workingCopy($path)->pull();
+            $git = $wrapper->workingCopy($path);
+            $msg =  date('[Y-m-d H:i:s]:') . $project . ' ' . $git->pull();
+            $msg .= "\n---------------latest 3 commits--------------\n";
+            $msg .= $git->log(['-3']);
             echo $msg;
             notify($msg);
             $response->status(200);
