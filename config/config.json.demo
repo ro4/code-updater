@@ -12,4 +12,18 @@
     "key": "password",
     "value": "123"
   },
+  "notification": {
+      "email": {
+        "account": "john@example.com",
+        "password": "email_password",
+        "smtp_host": "emal_host",
+        "smtp_port": 465
+      },
+      "receivers": [
+        {
+          "name": "john",
+          "address": "john@example.com"
+        }
+      ]
+    }
 }
