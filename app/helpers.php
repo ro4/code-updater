@@ -73,8 +73,9 @@ if (!function_exists('notify')) {
                 $mail->addAddress(access_object($receiver, 'address'), access_object($receiver, 'name'));
             }
             //Content
+            $mail->isHTML(true);
             $mail->Subject = 'code pull result';
-            $mail->Body    = $body;
+            $mail->Body    = str_replace("\n", "<br/>", $body);
             $mail->AltBody = $body;
 
             $mail->send();
