@@ -1,0 +1,15 @@
+{
+  "projects": {
+    "project1": {
+      "path": "/path/to/project"
+    },
+    "project2": {
+      "path": "/path/to/project"
+    }
+  },
+  "port": 4000,
+  "password": {
+    "key": "password",
+    "value": "123"
+  },
+}
