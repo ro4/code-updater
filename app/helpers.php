@@ -68,12 +68,12 @@ if (!function_exists('notify')) {
             $mail->Port = $smtpPort;                                    // TCP port to connect to
 
             //Recipients
-            $mail->setFrom($userName, 'Jupiter Notify');
+            $mail->setFrom($userName, 'Notify');
             foreach ($receivers as $receiver) {
                 $mail->addAddress(access_object($receiver, 'address'), access_object($receiver, 'name'));
             }
             //Content
-            $mail->Subject = '代码pull通知';
+            $mail->Subject = 'code pull result';
             $mail->Body    = $body;
             $mail->AltBody = $body;
 
