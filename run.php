@@ -1,3 +1,4 @@
+#!/usr/bin/env php
 <?php
 require __DIR__ . '/bootstrap/app.php';
 use GitWrapper\GitWrapper;
@@ -16,11 +17,11 @@ $http->on("request", function ($request, $response) use ($wrapper) {
     $method = $request->server['request_method'];
     $path   = $request->server['path_info'];
     if ($method == 'POST' && $path == '/push') {
-        $project       = access_array($request->post, 'project');
-        $passwordKey   = access_object(Config::instance()->password, 'key');
-        $passwordValue = access_object(Config::instance()->password, 'value');;
-        $password = access_array($request->post, $passwordKey);
-        $path     = access_object(Config::instance()->projects, "{$project}.path");
+        $project       = a_t($request->get, 'project');
+        $passwordKey   = a_t(Config::instance()->password, 'key');
+        $passwordValue = a_t(Config::instance()->password, 'value');;
+        $password = a_t($request->get, $passwordKey);
+        $path     = a_t(Config::instance()->projects, "{$project}.path");
         $pass     = ($password && $password == $passwordValue);
         if ($pass && $path) {
             $git = $wrapper->workingCopy($path);
@@ -28,7 +29,9 @@ $http->on("request", function ($request, $response) use ($wrapper) {
             $msg .= "\n---------------latest 3 commits--------------\n";
             $msg .= $git->log(['-3']);
             echo $msg;
-            notify($msg);
+            if (!stripos($msg ,'Already up-to-date')) {
+                notify($msg);
+            }
             $response->status(200);
             $response->end(json_encode(['msg' => 'ok']));
         } else {
